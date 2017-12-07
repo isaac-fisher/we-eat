@@ -13,6 +13,7 @@ class Restaurant < ApplicationRecord
           length: { maximum: 200, message: "Address max length reached" }
 
   belongs_to :cuisine
-
+  has_many :reviews
+  
   validates_associated :cuisine
 end

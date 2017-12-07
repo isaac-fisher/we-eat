@@ -5,11 +5,13 @@ class ReviewsController < ApplicationController
   # GET /reviews.json
   def index
     @reviews = Review.all
+    render json: @reviews
   end
 
   # GET /reviews/1
   # GET /reviews/1.json
   def show
+    render json: @review
   end
 
   # GET /reviews/new
