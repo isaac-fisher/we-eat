@@ -13,4 +13,9 @@
 
 class Review < ApplicationRecord
   belongs_to :restaurant
+
+  validates :rating,
+    presence: true,
+    inclusion: { in: 0..3, message: "Rating should be 0..3"}
+
 end

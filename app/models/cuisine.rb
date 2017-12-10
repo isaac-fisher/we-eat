@@ -11,6 +11,7 @@
 
 class Cuisine < ApplicationRecord
   validates :name,
+          uniqueness: true,
           presence: true,
           length: { maximum: 15, minimum: 2 }
 
