@@ -28,4 +28,8 @@ class Restaurant < ApplicationRecord
   has_many :reviews
 
   validates_associated :cuisine
+
+  def rating
+    reviews.average(:rating)
+  end
 end

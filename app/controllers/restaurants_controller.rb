@@ -5,13 +5,13 @@ class RestaurantsController < ApplicationController
   # GET /restaurants.json
   def index
     @restaurants = Restaurant.all
-    render json: @restaurants
+    render json: @restaurants.to_json(methods: :rating)
   end
 
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
-    render json: @restaurant
+    render json: @restaurant.to_json(methods: :rating)
   end
 
   # GET /restaurants/new
