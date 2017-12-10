@@ -3,9 +3,6 @@ class Restaurant < ApplicationRecord
           presence: true,
           length: { maximum: 20, minimum: 2, message: "Name length error" }
 
-  validates :rating,
-          inclusion: { in: 0..3, message: "Rating should be 0..3"}
-
   validates :delivery_time,
           inclusion: { in: 0..1440, message: "Delivery time should be number of minutes"}
 
@@ -14,6 +11,6 @@ class Restaurant < ApplicationRecord
 
   belongs_to :cuisine
   has_many :reviews
-  
+
   validates_associated :cuisine
 end
