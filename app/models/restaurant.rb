@@ -16,7 +16,7 @@ class Restaurant < ApplicationRecord
   validates :name,
           presence: true,
           uniqueness: true, 
-          length: { maximum: 20, minimum: 2, message: "Name length error" }
+          length: { maximum: 25, minimum: 2, message: "Name length error" }
 
   validates :delivery_time,
           inclusion: { in: 0..1440, message: "Delivery time should be number of minutes"}
