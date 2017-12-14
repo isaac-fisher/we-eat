@@ -2,7 +2,7 @@ FactoryBot.define do
 
   # user factory without associated posts
   factory :restaurant do
-    name { Faker::Simpsons.location }
+    name { Faker::Food.spice }
     address { Faker::Address.street_address }
     delivery_time { Faker::Number.between(1, 1440) }
 

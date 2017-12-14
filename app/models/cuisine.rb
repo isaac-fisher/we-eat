@@ -13,7 +13,7 @@ class Cuisine < ApplicationRecord
   validates :name,
           uniqueness: true,
           presence: true,
-          length: { maximum: 25, minimum: 2, message: "Name length error" }
+          length: { maximum: 40, minimum: 2, message: "Cuisine Name length error" }
 
   validates :logo,
           presence: true

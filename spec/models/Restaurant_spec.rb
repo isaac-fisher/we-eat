@@ -7,11 +7,11 @@ describe Restaurant do
   it { should have_many(:reviews) }
   it { should belong_to(:cuisine) }
 
-  it { should allow_values('SomeString').for(:address) }
-  it { should_not allow_values(Faker::Lovecraft.fhtagn(5)).for(:address) }
+  it { should allow_value('SomeString').for(:address) }
+  it { should_not allow_value(Faker::Lovecraft.fhtagn(5)).for(:address) }
 
-  it { should allow_values('35').for(:delivery_time) }
-  it { should_not allow_values('5000').for(:delivery_time) }
+  it { should allow_value(60).for(:delivery_time) }
+  it { should_not allow_value(5000).for(:delivery_time) }
 
   context 'When has multiple reviews' do
     ratings = [1,3,2,1]   #ratings for restaurant's reviews
