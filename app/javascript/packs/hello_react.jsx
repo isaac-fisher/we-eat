@@ -73,10 +73,21 @@ class TopBar extends React.Component {
 class RestaurantViewPage extends React.Component {
     constructor(props){
         super(props)
-        this.state = {searchText: '', filterCuisines: '', filterSpeed: '', filterRating: ''}
+        this.state = {searchText: '',
+                    filterCuisines: '',
+                    filterSpeed: '',
+                    filterRating: '',
+                    restData: []
+        }
 
         // this.handleFilterChange = this.handleFilterChange.bind(this)
         this.handleSearchChange = this.handleSearchChange.bind(this);
+    }
+
+    componentDidMount(){
+        $.get( "/restaurants/", data => {
+             this.setState({restData: data});
+        });
     }
 
     handleSearchChange(searchText) {
@@ -100,28 +111,23 @@ class RestaurantViewPage extends React.Component {
                 />
                 <RestTable
                     searchText={this.state.searchText}
-                    restData={this.props.restData}
+                    restData={this.state.restData}
                 />
             </div>
         );
     }
 }
 
-const restData = [{"id":1,"name":"Moses","card_acceptance":true,"address":"mklmafer ar ef 100","delivery_time":65,"cuisine_id":1,"rating":"2.5"},
-                  {"id":3,"name":"wolfesnight","card_acceptance":false,"address":"ljksndav 90","delivery_time":90,"cuisine_id":1,"rating":"3"},
-                  {"id":3,"name":"Magic's burger","card_acceptance":false,"address":"rrrr 4","delivery_time":90,"cuisine_id":1,"rating":"1"}]
-
 document.addEventListener('DOMContentLoaded', () => {
 
     ReactDOM.render(
-        <RestaurantViewPage restData={restData} />,
+        <RestaurantViewPage />,
     document.body.appendChild(document.createElement('container')),
   )
 })
 
 
-//
-// var restData = {}
-// $.get( "/restaurants/", function( data ) {
-//     restData = data
-// });
+
+// const mockRestestData = [{"id":1,"name":"Moses","card_acceptance":true,"address":"mklmafer ar ef 100","delivery_time":65,"cuisine_id":1,"rating":"2.5"},
+//     {"id":3,"name":"wolfesnight","card_acceptance":false,"address":"ljksndav 90","delivery_time":90,"cuisine_id":1,"rating":"3"},
+//     {"id":3,"name":"Magic's burger","card_acceptance":false,"address":"rrrr 4","delivery_time":90,"cuisine_id":1,"rating":"1"}]
