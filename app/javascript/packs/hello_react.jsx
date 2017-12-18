@@ -3,19 +3,15 @@ import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
 
-class ProductRow extends React.Component {
+class RestaurantRow extends React.Component {
     render() {
-        const product = this.props.product;
-        const name = product.name ?
-            product.name :
-            <span style={{color: 'red'}}>
-        {product.name}
-      </span>;
+        const restaurant = this.props.restaurant;
+        const name = restaurant.name
 
         return (
             <p>
-                <span>{name} </span>
-                <sub>{product.address}</sub>
+                <span style={{color: 'red'}}>{name} </span>
+                <sub>{restaurant.address}</sub>
             </p>
         );
     }
@@ -23,12 +19,14 @@ class ProductRow extends React.Component {
 
 class RestTable extends React.Component {
     render() {
+
+        console.log(JSON.stringify(this.props.restData)) //TODO: REMOVE
         const rows = [];
         let searched = this.props.searchText.trim().toLowerCase()
         this.props.restData.filter(rest => !searched || rest.name.toLowerCase().includes(searched)).forEach((restaurant) => {
             rows.push(
-                <ProductRow
-                    product={restaurant}
+                <RestaurantRow
+                    restaurant={restaurant}
                     key={restaurant.name} />
             );});
 
