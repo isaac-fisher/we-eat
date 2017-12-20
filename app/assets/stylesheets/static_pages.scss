@@ -1,3 +1,72 @@
 // Place all the styles related to the static_pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+  text-align: center;
+  margin: 0;
+}
+
+.rest_page {
+  //text-align: left;
+  //width: 800px;
+  //margin: 0 auto;
+  //border-color: red;
+  //border-style: solid;
+}
+
+
+.header {
+  background-color: #F1F1F1;
+  height: 200px;
+  text-align: center;
+  padding: 20px;
+}
+
+.content_holder {
+  @extend .watwat;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter_holder {
+  @extend .watwat;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.rest_holder {
+  @extend .watwat;
+
+  display: flex;
+  flex-direction: column;
+  //width: 300px;
+}
+
+.rest_row {
+  background-color: #F1F1F1;
+  border-radius: 15px 0 0 15px ;
+  padding: 1em;
+  margin: 1em 0 0 0;
+  align-self: flex-end;
+  width: 400px;
+}
+
+.map_holder {
+  @extend .watwat;
+
+  width: 650px;
+}
+
+
+
+.watwat {
+  border-color: red;
+  border-style: solid;
+}

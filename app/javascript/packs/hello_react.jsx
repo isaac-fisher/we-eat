@@ -9,10 +9,9 @@ class RestaurantRow extends React.Component {
         const name = restaurant.name
 
         return (
-            <p>
-                <span style={{color: 'red'}}>{name} </span>
-                <sub>{restaurant.address}</sub>
-            </p>
+            <div className="rest_row">
+                <p>{name} <sub>{restaurant.address}</sub> </p>
+            </div>
         );
     }
 }
@@ -20,7 +19,7 @@ class RestaurantRow extends React.Component {
 class RestTable extends React.Component {
     render() {
 
-        console.log(JSON.stringify(this.props.restData)) //TODO: REMOVE
+        // console.log(JSON.stringify(this.props.restData)) //TODO: REMOVE
         const rows = [];
         let searched = this.props.searchText.trim().toLowerCase()
         this.props.restData.filter(rest => !searched || rest.name.toLowerCase().includes(searched)).forEach((restaurant) => {
@@ -31,7 +30,7 @@ class RestTable extends React.Component {
             );});
 
         return (
-            <div>
+            <div className="rest_holder">
                 {rows}
             </div>
         );
@@ -55,7 +54,7 @@ class TopBar extends React.Component {
 
     render() {
         return (
-            <form>
+            <form className='filter_holder'>
                 <input
                     type="text"
                     placeholder="Search..."
@@ -98,7 +97,9 @@ class RestaurantViewPage extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className="rest_page">
+                <div className="header">
+                </div>
                 <TopBar
                     searchText={this.state.searchText}
                     // filterCuisines={this.state.filterCuisines}
@@ -107,10 +108,13 @@ class RestaurantViewPage extends React.Component {
                     // handleFilterChange={this.handleFilterChange}
                     handleSearchChange={this.handleSearchChange}
                 />
-                <RestTable
-                    searchText={this.state.searchText}
-                    restData={this.state.restData}
-                />
+                <div className='content_holder'>
+                    <RestTable
+                        searchText={this.state.searchText}
+                        restData={this.state.restData}
+                    />
+                    <div className='map_holder'></div>
+                </div>
             </div>
         );
     }
@@ -123,9 +127,3 @@ document.addEventListener('DOMContentLoaded', () => {
     document.body.appendChild(document.createElement('container')),
   )
 })
-
-
-
-// const mockRestestData = [{"id":1,"name":"Moses","card_acceptance":true,"address":"mklmafer ar ef 100","delivery_time":65,"cuisine_id":1,"rating":"2.5"},
-//     {"id":3,"name":"wolfesnight","card_acceptance":false,"address":"ljksndav 90","delivery_time":90,"cuisine_id":1,"rating":"3"},
-//     {"id":3,"name":"Magic's burger","card_acceptance":false,"address":"rrrr 4","delivery_time":90,"cuisine_id":1,"rating":"1"}]
