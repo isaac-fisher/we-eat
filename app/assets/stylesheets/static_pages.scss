@@ -174,11 +174,11 @@ body {
   font-family: FontAwesome;
   font-size: 26px;
   text-shadow: 0px 0px 1px black;
-}
 
-.stars-outer::before {
-  content: "\f088  \f088  \f088";
-  color: #cecece;
+  &:before {
+    content: "\f088  \f088  \f088";
+    color: #cecece;
+  }
 }
 
 .stars-inner {
@@ -189,11 +189,19 @@ body {
   overflow: hidden;
   width: 0;
   font-size: 26px;
+
+  &:before {
+    content: "\f088  \f088  \f088";
+    color: #ffd919;
+  }
 }
 
-.stars-inner::before {
-  content: "\f088  \f088  \f088";
-  color: #ffd919;
+.stars-none {
+  @extend .stars-outer;
+
+  &:before {
+    content: "-";
+  }
 }
 
 .card-accept {

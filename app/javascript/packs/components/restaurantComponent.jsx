@@ -11,7 +11,7 @@ const Stars = (props) =>
     let ratingRounded = Math.round(props.rating * 2) /2 ;
     let ratingPercent = (props.rating*100) / props.starmax;
     return(<div className="stars-outer">
-        <div className="stars-inner" style={{width: ratingPercent + '%'}}></div>
+        <div className="stars-inner" style={{width: ratingPercent + '%'}}/>
     </div>);
 };
 
