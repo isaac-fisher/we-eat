@@ -2,8 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import RestaurantContent from './components/restaurantContent'
+import RestaurantContent from './components/restaurantContainer'
 import TopBar from './components/topBar'
+import Header from './components/Header'
 
 class RestaurantViewPage extends React.Component {
     constructor(props){
@@ -23,6 +24,9 @@ class RestaurantViewPage extends React.Component {
         $.get( "/restaurants/", data => {
              this.setState({restData: data});
         });
+        $.get( "/cuisines/", data => {
+            this.setState({cuisineData: data});
+        });
     }
 
     handleSearchChange(searchText) {
@@ -36,8 +40,7 @@ class RestaurantViewPage extends React.Component {
     render() {
         return (
             <div className="rest_page">
-                <div className="header">
-                </div>
+                <Header/>
                 <TopBar
                     searchText={this.state.searchText}
                     // filterCuisines={this.state.filterCuisines}
@@ -49,6 +52,7 @@ class RestaurantViewPage extends React.Component {
                 <RestaurantContent
                     searchText={this.state.searchText}
                     restData={this.state.restData}
+                    cuisineData={this.state.cuisineData}
                 />
             </div>
         );

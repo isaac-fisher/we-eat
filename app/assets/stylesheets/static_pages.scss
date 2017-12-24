@@ -2,9 +2,23 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Freckle+Face|Hammersmith+One');
+
+@font-face{
+  font-family: 'MyWebFont';
+  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot');
+  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.woff') format('woff'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.ttf') format('truetype'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.svg#webfont') format('svg');
+}
+
 body {
   text-align: center;
   margin: 0;
+  color: #000;
 }
 
 .rest_page {
@@ -17,14 +31,44 @@ body {
 
 
 .header {
-  background-color: #F1F1F1;
-  height: 200px;
+  background-color: #e1e1e1;
+  //background-image: url('https://1.bp.blogspot.com/-r21xwWtYXsY/VtCc9o1PslI/AAAAAAAAECs/gsOJRLCBBC4/s640/ramsay.PNG');
+  //background-repeat: no-repeat;
+  //background-size: cover;
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+
+  height: 450px;
   text-align: center;
   padding: 20px;
+  overflow: hidden;
+  z-index: 0;
+  h1 {
+    margin-top: 250px;
+    font-family: 'Freckle Face', cursive;
+    font-size: 140px;
+    color: #fff;
+    z-index: 5;
+  }
+  h3 {
+    padding-top: 50px;
+    font-size: 30px;
+    color: #fff;
+    z-index: 5;
+  }
+
+  video {
+    position: absolute;
+    top: -70%;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    filter: blur(5px)
+  }
 }
 
 .content_holder {
-  @extend .watwat;
 
   display: flex;
   flex-direction: row;
@@ -33,7 +77,6 @@ body {
 }
 
 .filter_holder {
-  @extend .watwat;
 
   display: flex;
   flex-direction: row;
@@ -42,31 +85,123 @@ body {
 }
 
 .rest_holder {
-  @extend .watwat;
 
   display: flex;
   flex-direction: column;
-  //width: 300px;
 }
 
 .rest_row {
-  background-color: #F1F1F1;
-  border-radius: 15px 0 0 15px ;
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  background-color: #c3c3c3;
+  border-radius: 20px 0 0 20px ;
   padding: 1em;
   margin: 1em 0 0 0;
   align-self: flex-end;
-  width: 400px;
+  width: 450px;
+  height: 90px;
+  box-shadow: -1px 3px 8px 1px #e4aa49;
+
+  &:hover {
+    box-shadow: -1px 3px 8px 1px #e4aa49, 0 4px 8px 1px white inset;
+  }
 }
 
-.map_holder {
-  @extend .watwat;
+.rest_row_add {
+  @extend .rest_row;
+  justify-content: center;
 
-  width: 650px;
+  .plus {
+    position: relative;
+
+    align-self: center;
+    border: 5px #ffd919 solid;
+    font-family: Arial;
+    color: #ffd919;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-shadow: 0px 0px 3px #000;
+    box-shadow: 0px 0px 3px #000;
+    transition: box-shadow 300ms cubic-bezier(.2,0,.7,1);
+
+    &:after {
+      content: "+";
+      font-size: 3em;
+      line-height: 1.1em;
+    }
+    &:hover {
+      box-shadow: 0 0 1px 10px rgba(#000, 0.4),
+      0 0 1px 20px rgba(#ffd919, 0.1);
+    }
+  }
 }
 
+.logo {
+  align-self: center;
+  font-size: 5em;
+  font-family: 'MyWebFont';
+  flex-basis:17%;
+  margin-right: 25px;
+  margin-bottom: 5px;
+  text-shadow: 0px 0px 1px #ffd919;
+}
 
+.rest_data {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+  justify-content: space-evenly;
 
-.watwat {
-  border-color: red;
-  border-style: solid;
+  .rest_inner_data {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  p {
+    //font-size: 80%;
+    color: #444
+  }
+}
+
+.stars-outer {
+  line-height: 100%;
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome;
+  font-size: 26px;
+  text-shadow: 0px 0px 1px black;
+}
+
+.stars-outer::before {
+  content: "\f088  \f088  \f088";
+  color: #cecece;
+}
+
+.stars-inner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  width: 0;
+  font-size: 26px;
+}
+
+.stars-inner::before {
+  content: "\f088  \f088  \f088";
+  color: #ffd919;
+}
+
+.card-accept {
+  content: url('card.png');
+  width: 20px;
+}
+
+.card-reject {
+  @extend .card-accept;
+  filter: grayscale(100%) opacity(75%);
 }
