@@ -5,13 +5,38 @@ import AddRestaurantRow from './restaurantComponentAdd'
 
 import Map from './map'
 
+
+function applyFilters(restaurant,searched) {
+    return !searched || restaurant.name.toLowerCase().includes(searched);
+}
+
+
+function filterByCuisine(rest, cuisine) {
+    return !cuisine || rest.cuisine_id == cuisine;
+}
+
+function filterBySpeed(rest, maxSpeed) {
+    return !maxSpeed || !rest.delivery_time || rest.delivery_time == 0 || maxSpeed >= rest.delivery_time;
+}
+
+function filterByRating(rest, maxRating) {
+    return !maxRating || !rest.rating || maxRating >= rest.rating;
+}
+
+function filterBySearchedText(rest, searchText) {
+    let searched = searchText.trim().toLowerCase()
+    return !searchText || rest.name.toLowerCase().includes(searched)
+}
+
 const RestaurantContainer = (props) => {
-    console.log(JSON.stringify(props.cuisineData)) //TODO: REMOVE
     const rows = [];
-    let searched = props.searchText.trim().toLowerCase()
-    props.restData.filter(rest => !searched || rest.name.toLowerCase().includes(searched))
-        .forEach((restaurant) => {
-            let logo = props.cuisineData.find(c => c.id == restaurant.cuisine_id)
+    props.restData.filter(rest => {
+            return filterByCuisine(rest, props.filters.cuisine) &&
+                   filterBySpeed(rest, props.filters.maxSpeed) &&
+                   filterByRating(rest, props.filters.maxRating) &&
+                   filterBySearchedText(rest, props.searchText);
+        }).forEach((restaurant) => {
+            let logo = props.cuisineData.find(c => c.id === restaurant.cuisine_id)
             rows.push(
                 <RestaurantRow
                     restaurant={restaurant}

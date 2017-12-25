@@ -10,13 +10,12 @@ class RestaurantViewPage extends React.Component {
     constructor(props){
         super(props)
         this.state = {searchText: '',
-                    filterCuisines: '',
-                    filterSpeed: '',
-                    filterRating: '',
-                    restData: []
+                    filters: {cuisine:'',maxSpeed:0, maxRating:''},
+                    restData: [],
+                    cuisineData: [],
         }
 
-        // this.handleFilterChange = this.handleFilterChange.bind(this)
+        this.handleFilterChange = this.handleFilterChange.bind(this)
         this.handleSearchChange = this.handleSearchChange.bind(this);
     }
 
@@ -33,9 +32,9 @@ class RestaurantViewPage extends React.Component {
         this.setState({searchText: searchText})
     }
 
-    // handleFilterChange(filterText) {
-    //     this.setState({filterText: filterText})
-    // }
+    handleFilterChange(filters) {
+        this.setState({filters: filters})
+    }
 
     render() {
         return (
@@ -43,14 +42,15 @@ class RestaurantViewPage extends React.Component {
                 <Header/>
                 <TopBar
                     searchText={this.state.searchText}
-                    // filterCuisines={this.state.filterCuisines}
-                    // filterSpeed={this.state.filterSpeed}
-                    // filterRating={this.state.filterRating}
-                    // handleFilterChange={this.handleFilterChange}
+                    filters={this.state.filters}
+                    handleFilterChange={this.handleFilterChange}
                     handleSearchChange={this.handleSearchChange}
+                    cuisineData={this.state.cuisineData}
+
                 />
                 <RestaurantContent
                     searchText={this.state.searchText}
+                    filters={this.state.filters}
                     restData={this.state.restData}
                     cuisineData={this.state.cuisineData}
                 />

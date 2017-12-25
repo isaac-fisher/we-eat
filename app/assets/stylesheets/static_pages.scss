@@ -32,9 +32,6 @@ body {
 
 .header {
   background-color: #e1e1e1;
-  //background-image: url('https://1.bp.blogspot.com/-r21xwWtYXsY/VtCc9o1PslI/AAAAAAAAECs/gsOJRLCBBC4/s640/ramsay.PNG');
-  //background-repeat: no-repeat;
-  //background-size: cover;
   position: relative;
   bottom: 0%;
   left: 0%;
@@ -77,11 +74,35 @@ body {
 }
 
 .filter_holder {
-
+  background-color: #444444;
+  padding: 20px;
+  height: 20px;
+  width: 100%;
+  //border-radius: 40px / 100%;
+  overflow: visible;
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
   flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+  //flex-wrap: wrap;
+
+  .filter {
+    margin: 10px;
+
+    input {
+      height: 2em;
+      width: 220px;
+      font-size: 14px;
+    }
+
+    select {
+      width: 170px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      height: 31px;
+    }
+  }
 }
 
 .rest_holder {
@@ -109,6 +130,7 @@ body {
   }
 }
 
+//last restaurant row - add new
 .rest_row_add {
   @extend .rest_row;
   justify-content: center;
@@ -139,6 +161,7 @@ body {
   }
 }
 
+//Cuisine logo
 .logo {
   align-self: center;
   font-size: 5em;
@@ -158,20 +181,38 @@ body {
   .rest_inner_data {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-start;
+
   }
 
   p {
-    //font-size: 80%;
-    color: #444
+    flex-grow: 1;
+    color: #444;
+    text-align: left;
+  }
+
+  h2 {
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  q {
+    color: #444;
+
+    &:after{
+      font-family: FontAwesome;
+      content: " \f017";
+      font-size: 80%;
+    }
   }
 }
 
+//Restaurant rating
 .stars-outer {
   line-height: 100%;
   display: inline-block;
   position: relative;
-  font-family: FontAwesome;
+  font-family: FontAwesome, fantasy;
   font-size: 26px;
   text-shadow: 0px 0px 1px black;
 
@@ -179,23 +220,22 @@ body {
     content: "\f088  \f088  \f088";
     color: #cecece;
   }
-}
 
-.stars-inner {
-  position: absolute;
-  top: 0;
-  left: 0;
-  white-space: nowrap;
-  overflow: hidden;
-  width: 0;
-  font-size: 26px;
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    font-size: 26px;
 
-  &:before {
-    content: "\f088  \f088  \f088";
-    color: #ffd919;
+    &:before {
+      content: "\f088  \f088  \f088";
+      color: #ffd919;
+    }
   }
 }
-
 .stars-none {
   @extend .stars-outer;
 
@@ -205,6 +245,7 @@ body {
 }
 
 .card-accept {
+  padding: 10px;
   content: url('card.png');
   width: 20px;
 }
@@ -213,3 +254,37 @@ body {
   @extend .card-accept;
   filter: grayscale(100%) opacity(75%);
 }
+
+//Rating Filter
+.star-check {
+  border: none;
+  float: left;
+
+  &>input { display: none; }
+
+  &>label:before {
+    margin: 5px;
+    font-size: 26px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f088";
+    text-shadow: 0px 0px 1px black;
+
+  }
+
+  &>label {
+    color: #ddd;
+    float: right;
+  }
+  &>input:checked ~ label, /* show gold star when clicked */
+  &:not(:checked) > label:hover, /* hover current star */
+  &:not(:checked) > label:hover ~ label { color: #ffd919;  } /* hover previous stars in list */
+
+  &>input:checked + label:hover, /* hover current star when changing rating */
+  &>input:checked ~ label:hover,
+  &>label:hover ~ input:checked ~ label, /* lighten current selection */
+  &>input:checked ~ label:hover ~ label { color: #CCCC00;  }
+}
+
+
+
