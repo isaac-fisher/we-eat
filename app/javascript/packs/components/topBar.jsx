@@ -53,9 +53,9 @@ class TopBar extends React.Component {
                 <div className='filter'><select onChange={this.handleCuisinesFilterChange} value={this.props.filters.cuisine || ''}>
                     {cuisines}
                 </select></div>
-                <div className='filter'><p>Delivery-Time</p>
+                <div className='filter'><p>Delivery-Time: {this.props.filters.maxSpeed || 'max'}</p>
                 <input
-                    type='range' min='0' max='300' defaultValue='0' step='10'
+                    type='range' min='0' max='300' defaultValue='300' step='10'
                     className='Speed'
                     onChange={this.handleSpeedFilterChange}
                 /></div>

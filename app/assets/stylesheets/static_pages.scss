@@ -91,16 +91,55 @@ body {
     margin: 10px;
 
     input {
-      height: 2em;
+      height: 25px;
       width: 220px;
       font-size: 14px;
+      border-radius: 5px;
     }
 
     select {
       width: 170px;
+      height: 29px;
       font-size: 14px;
       border: 1px solid #ccc;
-      height: 31px;
+    }
+
+    >p {
+      position: absolute;
+      margin-top: 8px;
+      margin-left: 10px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    //Delivery time slider
+    .Speed {
+      -webkit-appearance: none;
+      width: 150px;
+      height: 30px;
+      background: #eee;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 30px;
+        height: 30px;
+        background: #e4aa49;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      &::-moz-range-thumb {
+        width: 30px;
+        height: 30px;
+        background: #e4aa49;
+        cursor: pointer;
+      }
     }
   }
 }
