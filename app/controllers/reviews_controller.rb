@@ -4,8 +4,13 @@ class ReviewsController < ApplicationController
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
-    render json: @reviews
+    if params[:restaurant]
+      @reviews = Review.where(restaurant_id: params[:restaurant])
+      render json: @reviews
+    else
+      @reviews = Review.all
+      render json: @reviews
+    end
   end
 
   # GET /reviews/1

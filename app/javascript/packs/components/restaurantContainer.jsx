@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import RestaurantRow from './restaurantComponent'
 import AddRestaurantRow from './restaurantComponentAdd'
 
-import Map from './map'
+import RestMap from './RestMap'
 
 
 function applyFilters(restaurant,searched) {
@@ -42,6 +42,7 @@ const RestaurantContainer = (props) => {
                     restaurant={restaurant}
                     key={restaurant.id}
                     logo={(logo && logo.logo) || 'f'} //default food
+                    showPopup={props.showPopup}
                 />
             );
     });
@@ -52,7 +53,7 @@ const RestaurantContainer = (props) => {
             <div className="rest_holder">
                 {rows}
             </div>
-            <Map/>
+            <RestMap/>
         </div>
     );
 }

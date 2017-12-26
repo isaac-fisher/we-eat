@@ -28,7 +28,7 @@ class RestaurantRow extends React.Component {
 
 
         return (
-            <div className="rest_row">
+            <div className="rest_row" onClick={() => this.props.showPopup(restaurant.id)}>
                 <p className='logo'>{this.props.logo}</p>
                 <div className='rest_data'>
                     <div className='rest_inner_data'>
