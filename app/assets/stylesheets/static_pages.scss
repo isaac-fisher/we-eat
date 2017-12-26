@@ -1,0 +1,329 @@
+// Place all the styles related to the static_pages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "font-awesome-sprockets";
+@import "font-awesome";
+@import url('https://fonts.googleapis.com/css?family=Freckle+Face|Hammersmith+One');
+
+@font-face{
+  font-family: 'MyWebFont';
+  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot');
+  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.woff') format('woff'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.ttf') format('truetype'),
+  url('./cuisine-webfont/efcuisines-regular-webfont.svg#webfont') format('svg');
+}
+
+body {
+  text-align: center;
+  margin: 0;
+  color: #000;
+}
+
+.rest_page {
+  //text-align: left;
+  //width: 800px;
+  //margin: 0 auto;
+  //border-color: red;
+  //border-style: solid;
+}
+
+
+.header {
+  background-color: #e1e1e1;
+  position: relative;
+  bottom: 0%;
+  left: 0%;
+
+  height: 450px;
+  text-align: center;
+  padding: 20px;
+  overflow: hidden;
+  z-index: 0;
+  h1 {
+    margin-top: 250px;
+    font-family: 'Freckle Face', cursive;
+    font-size: 140px;
+    color: #fff;
+    z-index: 5;
+  }
+  h3 {
+    padding-top: 50px;
+    font-size: 30px;
+    color: #fff;
+    z-index: 5;
+  }
+
+  video {
+    position: absolute;
+    top: -70%;
+    left: 0;
+    width: 100%;
+    z-index: -1;
+    filter: blur(5px)
+  }
+}
+
+.content_holder {
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.filter_holder {
+  background-color: #444444;
+  padding: 20px;
+  height: 20px;
+  width: 100%;
+  //border-radius: 40px / 100%;
+  overflow: visible;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  flex-direction: row;
+  //flex-wrap: wrap;
+
+  .filter {
+    margin: 10px;
+
+    input {
+      height: 25px;
+      width: 220px;
+      font-size: 14px;
+      border-radius: 5px;
+    }
+
+    select {
+      width: 170px;
+      height: 29px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+    }
+
+    >p {
+      position: absolute;
+      margin-top: 8px;
+      margin-left: 10px;
+      z-index: 5;
+      pointer-events: none;
+    }
+
+    //Delivery time slider
+    .Speed {
+      -webkit-appearance: none;
+      width: 150px;
+      height: 30px;
+      background: #eee;
+      outline: none;
+      opacity: 0.7;
+      -webkit-transition: .2s;
+      transition: opacity .2s;
+
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 30px;
+        height: 30px;
+        background: #e4aa49;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+
+      &::-moz-range-thumb {
+        width: 30px;
+        height: 30px;
+        background: #e4aa49;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.rest_holder {
+
+  display: flex;
+  flex-direction: column;
+}
+
+.rest_row {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+
+  background-color: #c3c3c3;
+  border-radius: 20px 0 0 20px ;
+  padding: 1em;
+  margin: 1em 0 0 0;
+  align-self: flex-end;
+  width: 450px;
+  height: 90px;
+  box-shadow: -1px 3px 8px 1px #e4aa49;
+
+  &:hover {
+    box-shadow: -1px 3px 8px 1px #e4aa49, 0 4px 8px 1px white inset;
+  }
+}
+
+//last restaurant row - add new
+.rest_row_add {
+  @extend .rest_row;
+  justify-content: center;
+
+  .plus {
+    position: relative;
+
+    align-self: center;
+    border: 5px #ffd919 solid;
+    font-family: Arial;
+    color: #ffd919;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-shadow: 0px 0px 3px #000;
+    box-shadow: 0px 0px 3px #000;
+    transition: box-shadow 300ms cubic-bezier(.2,0,.7,1);
+
+    &:after {
+      content: "+";
+      font-size: 3em;
+      line-height: 1.1em;
+    }
+    &:hover {
+      box-shadow: 0 0 1px 10px rgba(#000, 0.4),
+      0 0 1px 20px rgba(#ffd919, 0.1);
+    }
+  }
+}
+
+//Cuisine logo
+.logo {
+  align-self: center;
+  font-size: 5em;
+  font-family: 'MyWebFont';
+  flex-basis:17%;
+  margin-right: 25px;
+  margin-bottom: 5px;
+  text-shadow: 0px 0px 1px #ffd919;
+}
+
+.rest_data {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+  justify-content: space-evenly;
+
+  .rest_inner_data {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+  }
+
+  p {
+    flex-grow: 1;
+    color: #444;
+    text-align: left;
+  }
+
+  h2 {
+    flex-grow: 1;
+    text-align: left;
+  }
+
+  q {
+    color: #444;
+
+    &:after{
+      font-family: FontAwesome;
+      content: " \f017";
+      font-size: 80%;
+    }
+  }
+}
+
+//Restaurant rating
+.stars-outer {
+  line-height: 100%;
+  display: inline-block;
+  position: relative;
+  font-family: FontAwesome, fantasy;
+  font-size: 26px;
+  text-shadow: 0px 0px 1px black;
+
+  &:before {
+    content: "\f088  \f088  \f088";
+    color: #cecece;
+  }
+
+  .stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    font-size: 26px;
+
+    &:before {
+      content: "\f088  \f088  \f088";
+      color: #ffd919;
+    }
+  }
+}
+.stars-none {
+  @extend .stars-outer;
+
+  &:before {
+    content: "-";
+  }
+}
+
+.card-accept {
+  padding: 10px;
+  content: url('card.png');
+  width: 20px;
+}
+
+.card-reject {
+  @extend .card-accept;
+  filter: grayscale(100%) opacity(75%);
+}
+
+//Rating Filter
+.star-check {
+  border: none;
+  float: left;
+
+  &>input { display: none; }
+
+  &>label:before {
+    margin: 5px;
+    font-size: 26px;
+    font-family: FontAwesome;
+    display: inline-block;
+    content: "\f088";
+    text-shadow: 0px 0px 1px black;
+
+  }
+
+  &>label {
+    color: #ddd;
+    float: right;
+  }
+  &>input:checked ~ label, /* show gold star when clicked */
+  &:not(:checked) > label:hover, /* hover current star */
+  &:not(:checked) > label:hover ~ label { color: #ffd919;  } /* hover previous stars in list */
+
+  &>input:checked + label:hover, /* hover current star when changing rating */
+  &>input:checked ~ label:hover,
+  &>label:hover ~ input:checked ~ label, /* lighten current selection */
+  &>input:checked ~ label:hover ~ label { color: #CCCC00;  }
+}
+
+
+
