@@ -2,9 +2,10 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
 import $ from 'jquery'
-import RestaurantContent from './components/restaurantContainer'
+import RestaurantContainer from './components/restaurantContainer'
 import TopBar from './components/topBar'
 import Header from './components/Header'
+import ReviewPopup from './components/ReviewPopup'
 
 class RestaurantViewPage extends React.Component {
     constructor(props){
@@ -13,10 +14,12 @@ class RestaurantViewPage extends React.Component {
                     filters: {cuisine:'',maxSpeed:0, maxRating:''},
                     restData: [],
                     cuisineData: [],
+                    showReviewPopup: ''
         }
 
-        this.handleFilterChange = this.handleFilterChange.bind(this)
+        this.handleFilterChange = this.handleFilterChange.bind(this);
         this.handleSearchChange = this.handleSearchChange.bind(this);
+        this.togglePopup = this.togglePopup.bind(this);
     }
 
     componentDidMount(){
@@ -36,24 +39,40 @@ class RestaurantViewPage extends React.Component {
         this.setState({filters: filters})
     }
 
-    render() {
-        return (
-            <div className="rest_page">
-                <Header/>
-                <TopBar
-                    searchText={this.state.searchText}
-                    filters={this.state.filters}
-                    handleFilterChange={this.handleFilterChange}
-                    handleSearchChange={this.handleSearchChange}
-                    cuisineData={this.state.cuisineData}
+    togglePopup(restaurantToShow) {
+        this.setState({
+            showReviewPopup: restaurantToShow
+        });
+    }
 
-                />
-                <RestaurantContent
-                    searchText={this.state.searchText}
-                    filters={this.state.filters}
-                    restData={this.state.restData}
-                    cuisineData={this.state.cuisineData}
-                />
+    render() {
+        let blurPage = this.state.showReviewPopup ? 'blur(10px)' : '';
+        return (
+            <div>
+                <div className="rest_page" style={{filter:blurPage}}>
+                    <Header/>
+                    <TopBar
+                        searchText={this.state.searchText}
+                        filters={this.state.filters}
+                        handleFilterChange={this.handleFilterChange}
+                        handleSearchChange={this.handleSearchChange}
+                        cuisineData={this.state.cuisineData}
+
+                    />
+                    <RestaurantContainer
+                        searchText={this.state.searchText}
+                        filters={this.state.filters}
+                        restData={this.state.restData}
+                        cuisineData={this.state.cuisineData}
+                        showPopup={this.togglePopup}
+                    />
+                </div>
+                {this.state.showReviewPopup ?
+                    <ReviewPopup
+                        showPopup={this.togglePopup}
+                        show={this.state.showReviewPopup}
+                    />
+                    : null }
             </div>
         );
     }

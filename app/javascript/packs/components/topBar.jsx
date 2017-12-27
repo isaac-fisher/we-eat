@@ -60,9 +60,9 @@ class TopBar extends React.Component {
                     onChange={this.handleSpeedFilterChange}
                 /></div>
                 <div className='filter'><fieldset className="star-check" onChange={this.handleRatingsFilterChange}>
-                    <input type="radio" id="star3" name="rating" value="3" /><label className = "full" htmlFor="star3" />
-                    <input type="radio" id="star2" name="rating" value="2" /><label className = "full" htmlFor="star2" />
-                    <input type="radio" id="star1" name="rating" value="1.0" /><label className = "full" htmlFor="star1" />
+                    <input type="radio" className='radiostar' id="star3" name="rating" value="3" /><label className = "radiolabel" htmlFor="star3" />
+                    <input type="radio" className='radiostar' id="star2" name="rating" value="2" /><label className = "radiolabel" htmlFor="star2" />
+                    <input type="radio" className='radiostar' id="star1" name="rating" value="1.0" /><label className = "radiolabel" htmlFor="star1" />
                 </fieldset></div>
             </form>
         );

@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 
-class Map extends React.Component {
+class RestMap extends React.Component {
     render(){
         return (
         <iframe
@@ -16,4 +16,4 @@ class Map extends React.Component {
 
 //AIzaSyB5ezv5cr9Qp1SVYL5o2e1A0obHRNgjC0g
 
-export default Map;
+export default RestMap;

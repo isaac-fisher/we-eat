@@ -1,11 +1,17 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /reviews
   # GET /reviews.json
   def index
-    @reviews = Review.all
-    render json: @reviews
+    if params[:restaurant]
+      @reviews = Review.where(restaurant_id: params[:restaurant])
+      render json: @reviews
+    else
+      @reviews = Review.all
+      render json: @reviews
+    end
   end
 
   # GET /reviews/1
@@ -30,10 +36,8 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end

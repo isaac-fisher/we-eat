@@ -21,15 +21,6 @@ body {
   color: #000;
 }
 
-.rest_page {
-  //text-align: left;
-  //width: 800px;
-  //margin: 0 auto;
-  //border-color: red;
-  //border-style: solid;
-}
-
-
 .header {
   background-color: #e1e1e1;
   position: relative;
@@ -81,7 +72,7 @@ body {
   //border-radius: 40px / 100%;
   overflow: visible;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
 
   flex-direction: row;
@@ -95,18 +86,20 @@ body {
       width: 220px;
       font-size: 14px;
       border-radius: 5px;
+      opacity: 0.7;
     }
 
     select {
       width: 170px;
-      height: 29px;
+      height: 30px;
       font-size: 14px;
       border: 1px solid #ccc;
+      opacity: 0.7;
     }
 
     >p {
       position: absolute;
-      margin-top: 8px;
+      margin-top: 10px;
       margin-left: 10px;
       z-index: 5;
       pointer-events: none;
@@ -115,6 +108,7 @@ body {
     //Delivery time slider
     .Speed {
       -webkit-appearance: none;
+      margin-top: 4px;
       width: 150px;
       height: 30px;
       background: #eee;
@@ -285,13 +279,13 @@ body {
 
 .card-accept {
   padding: 10px;
-  content: url('card.png');
+  content: image_url('card.png');
   width: 20px;
 }
 
 .card-reject {
   @extend .card-accept;
-  filter: grayscale(100%) opacity(75%);
+  filter: grayscale(100%) opacity(50%);
 }
 
 //Rating Filter
@@ -308,22 +302,150 @@ body {
     display: inline-block;
     content: "\f088";
     text-shadow: 0px 0px 1px black;
-
   }
 
   &>label {
     color: #ddd;
     float: right;
   }
-  &>input:checked ~ label, /* show gold star when clicked */
-  &:not(:checked) > label:hover, /* hover current star */
-  &:not(:checked) > label:hover ~ label { color: #ffd919;  } /* hover previous stars in list */
+  &>.radiostar:checked ~ .radiolabel, /* show gold star when clicked */
+  &:not(:checked) > .radiolabel:hover, /* hover current star */
+  &:not(:checked) > .radiolabel:hover ~ .radiolabel { color: #ffd919;  } /* hover previous stars in list */
 
-  &>input:checked + label:hover, /* hover current star when changing rating */
-  &>input:checked ~ label:hover,
-  &>label:hover ~ input:checked ~ label, /* lighten current selection */
-  &>input:checked ~ label:hover ~ label { color: #CCCC00;  }
+  &>.radiostar:checked + .radiolabel:hover, /* hover current star when changing rating */
+  &>.radiostar:checked ~ .radiolabel:hover,
+  &>.radiolabel:hover ~ .radiostar:checked ~ .radiolabel, /* lighten current selection */
+  &>.radiostar:checked ~ .radiolabel:hover ~ .radiolabel { color: #CCCC00;  }
+}
+
+//Rating for new review
+.star-new-review {
+  @extend .star-check;
+
+  &>.newradiostar:checked ~ .newstarlable, /* show gold star when clicked */
+  &:not(:checked) > .newstarlable:hover, /* hover current star */
+  &:not(:checked) > .newstarlable:hover ~ .newstarlable { color: #ffd919;  } /* hover previous stars in list */
+
+  &>.newradiostar:checked + .newstarlable:hover, /* hover current star when changing rating */
+  &>.newradiostar:checked ~ .newstarlable:hover,
+  &>.newstarlable:hover ~ .newradiostar:checked ~ .newstarlable, /* lighten current selection */
+  &>.newradiostar:checked ~ .newstarlable:hover ~ .newstarlable { color: #CCCC00;  }
 }
 
 
 
+.popupReview {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: 20;
+
+  .popupReview_inner {
+    opacity: 1;
+    position: absolute;
+    left: 30%;
+    right: 30%;
+    top: 25%;
+    min-height: 100px;
+    margin: auto;
+    background: white;
+    z-index: 25;
+    border-radius: 20px 0 20px 20px ;
+
+
+    .close {
+      position: absolute;
+      right: -10px;
+      top: 0;
+      &:before {
+        font-family: FontAwesome;
+        font-size: 3em;
+        content: "\f057";
+      }
+    }
+  }
+}
+
+.reviewComponent {
+  margin: 40px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
+  label {
+    right: 0px;
+  }
+  counter-increment: mega-step;
+
+  &:before {
+    content: counter(mega-step, decimal-leading-zero);
+    padding: 4px;
+    font-size: 2em;
+    color: black;
+  }
+
+  .reviewData {
+    flex-grow: 1;
+
+    &:before {
+      display: grid;
+      margin: 8px;
+      color: #CCC;
+      font-size: 12px;
+      content:attr(data-title);
+    }
+  }
+
+  .reviewComment{
+    @extend .reviewData;
+    flex-grow: 4;
+    text-align: left;
+  }
+
+  .reviewSubmit {
+    align-self: flex-end;
+
+    button {
+      height: 30px;
+      width: 90px;
+      size: 2em;
+    }
+
+    p {
+      position: absolute;
+      width: 30%;
+      right: 35%;
+      margin-top: 20px;
+      background: #c51244 !important;
+      padding: 6px !important;
+      border-radius: 0 !important;
+      box-shadow: 1px 1px 1px #aaaaaa;
+
+      &:before {
+        content: '';
+        right: 45%;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 7px solid #c51244;
+        position: absolute;
+        top: -7px;
+      }
+    }
+  }
+}
+
+.addReview {
+  @extend .reviewComponent;
+  //border: #ccc solid;
+
+  &:before {
+    content: '+';
+  }
+}
