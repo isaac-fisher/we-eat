@@ -12,26 +12,30 @@ class AddReview extends React.Component {
     }
 
     AddNewReview() {
-        let rData = {};
+        let reviewParams = {};
 
-        rData.restaurant_id = this.props.restaurant_id;
-        rData.reviewer_name = $('#reviewerName').val();
-        rData.comment = $('#reviewerComment').val();
+        reviewParams.restaurant_id = this.props.restaurant_id;
+        reviewParams.reviewer_name = $('#reviewerName').val();
+        reviewParams.comment = $('#reviewerComment').val();
 
         let rating = $('input[name=rating]:checked', '#reviewerRating');
-        rData.rating = rating ? rating.val() : null ;
+        reviewParams.rating = rating ? rating.val() : null ;
 
         let validate = (...args) => {return args.some((obj) => obj == null || obj.trim() === '' )}
-        if (validate(rData.rating,rData.comment,rData.reviewer_name))
+        if (validate(reviewParams.rating,reviewParams.comment,reviewParams.reviewer_name))
         {
             $('#validationError').show();
         }
         else
         {
-            console.log(JSON.stringify(rData));
+            let reviewData = {};
+            reviewData.review = reviewParams;
+           $.post("/reviews", reviewData,
+            function(data, status){
+               //check success?
+            });
             this.props.showPopup('');
         }
-
     }
 
     render() {
@@ -58,7 +62,7 @@ class AddReview extends React.Component {
                     placeholder="Comment"
                 /></div>
                 <div className='reviewSubmit'>
-                    <button onClick={this.AddNewReview}>save</button>
+                    <button onClick={this.AddNewReview}>Save</button>
                     <p id='validationError' hidden>Please fill all fields.</p>
                 </div>
             </div>);

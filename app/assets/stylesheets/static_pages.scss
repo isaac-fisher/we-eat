@@ -399,11 +399,6 @@ body {
       font-size: 12px;
       content:attr(data-title);
     }
-
-    p {
-      color: #D8000C;
-      text-shadow: 1px 1px 5px black ;
-    }
   }
 
   .reviewComment{
@@ -412,8 +407,37 @@ body {
     text-align: left;
   }
 
-  .reviwSubmit {
+  .reviewSubmit {
     align-self: flex-end;
+
+    button {
+      height: 30px;
+      width: 90px;
+      size: 2em;
+    }
+
+    p {
+      position: absolute;
+      width: 30%;
+      right: 35%;
+      margin-top: 20px;
+      background: #c51244 !important;
+      padding: 6px !important;
+      border-radius: 0 !important;
+      box-shadow: 1px 1px 1px #aaaaaa;
+
+      &:before {
+        content: '';
+        right: 45%;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 7px solid #c51244;
+        position: absolute;
+        top: -7px;
+      }
+    }
   }
 }
 

@@ -1,5 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /reviews
   # GET /reviews.json
@@ -35,10 +36,8 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end
