@@ -10,7 +10,6 @@ function applyFilters(restaurant,searched) {
     return !searched || restaurant.name.toLowerCase().includes(searched);
 }
 
-
 function filterByCuisine(rest, cuisine) {
     return !cuisine || rest.cuisine_id == cuisine;
 }
@@ -20,7 +19,7 @@ function filterBySpeed(rest, maxSpeed) {
 }
 
 function filterByRating(rest, maxRating) {
-    return !maxRating || !rest.rating || maxRating >= rest.rating;
+    return !maxRating || !rest.rating || parseFloat(maxRating) >= parseFloat(rest.rating);
 }
 
 function filterBySearchedText(rest, searchText) {
@@ -30,6 +29,7 @@ function filterBySearchedText(rest, searchText) {
 
 const RestaurantContainer = (props) => {
     const rows = [];
+    //TODO use [filter1,filter2..].map
     props.restData.filter(rest => {
             return filterByCuisine(rest, props.filters.cuisine) &&
                    filterBySpeed(rest, props.filters.maxSpeed) &&

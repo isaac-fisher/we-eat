@@ -8,10 +8,10 @@ class AddReview extends React.Component {
     constructor(props) {
         super(props)
 
-        this.AddNewReview = this.AddNewReview.bind(this)
+        this.addNewReview = this.addNewReview.bind(this)
     }
 
-    AddNewReview() {
+    addNewReview() {
         let reviewParams = {};
 
         reviewParams.restaurant_id = this.props.restaurant_id;
@@ -62,7 +62,7 @@ class AddReview extends React.Component {
                     placeholder="Comment"
                 /></div>
                 <div className='reviewSubmit'>
-                    <button onClick={this.AddNewReview}>Save</button>
+                    <button onClick={this.addNewReview}>Save</button>
                     <p id='validationError' hidden>Please fill all fields.</p>
                 </div>
             </div>);
