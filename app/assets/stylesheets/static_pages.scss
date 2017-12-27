@@ -302,22 +302,37 @@ body {
     display: inline-block;
     content: "\f088";
     text-shadow: 0px 0px 1px black;
-
   }
 
   &>label {
     color: #ddd;
     float: right;
   }
-  &>input:checked ~ label, /* show gold star when clicked */
-  &:not(:checked) > label:hover, /* hover current star */
-  &:not(:checked) > label:hover ~ label { color: #ffd919;  } /* hover previous stars in list */
+  &>.radiostar:checked ~ .radiolabel, /* show gold star when clicked */
+  &:not(:checked) > .radiolabel:hover, /* hover current star */
+  &:not(:checked) > .radiolabel:hover ~ .radiolabel { color: #ffd919;  } /* hover previous stars in list */
 
-  &>input:checked + label:hover, /* hover current star when changing rating */
-  &>input:checked ~ label:hover,
-  &>label:hover ~ input:checked ~ label, /* lighten current selection */
-  &>input:checked ~ label:hover ~ label { color: #CCCC00;  }
+  &>.radiostar:checked + .radiolabel:hover, /* hover current star when changing rating */
+  &>.radiostar:checked ~ .radiolabel:hover,
+  &>.radiolabel:hover ~ .radiostar:checked ~ .radiolabel, /* lighten current selection */
+  &>.radiostar:checked ~ .radiolabel:hover ~ .radiolabel { color: #CCCC00;  }
 }
+
+//Rating for new review
+.star-new-review {
+  @extend .star-check;
+
+  &>.newradiostar:checked ~ .newstarlable, /* show gold star when clicked */
+  &:not(:checked) > .newstarlable:hover, /* hover current star */
+  &:not(:checked) > .newstarlable:hover ~ .newstarlable { color: #ffd919;  } /* hover previous stars in list */
+
+  &>.newradiostar:checked + .newstarlable:hover, /* hover current star when changing rating */
+  &>.newradiostar:checked ~ .newstarlable:hover,
+  &>.newstarlable:hover ~ .newradiostar:checked ~ .newstarlable, /* lighten current selection */
+  &>.newradiostar:checked ~ .newstarlable:hover ~ .newstarlable { color: #CCCC00;  }
+}
+
+
 
 .popupReview {
   position: fixed;
@@ -340,6 +355,8 @@ body {
     margin: auto;
     background: white;
     z-index: 25;
+    border-radius: 20px 0 20px 20px ;
+
 
     .close {
       position: absolute;
@@ -351,5 +368,60 @@ body {
         content: "\f057";
       }
     }
+  }
+}
+
+.reviewComponent {
+  margin: 40px;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+
+  label {
+    right: 0px;
+  }
+  counter-increment: mega-step;
+
+  &:before {
+    content: counter(mega-step, decimal-leading-zero);
+    padding: 4px;
+    font-size: 2em;
+    color: black;
+  }
+
+  .reviewData {
+    flex-grow: 1;
+
+    &:before {
+      display: grid;
+      margin: 8px;
+      color: #CCC;
+      font-size: 12px;
+      content:attr(data-title);
+    }
+
+    p {
+      color: #D8000C;
+      text-shadow: 1px 1px 5px black ;
+    }
+  }
+
+  .reviewComment{
+    @extend .reviewData;
+    flex-grow: 4;
+    text-align: left;
+  }
+
+  .reviwSubmit {
+    align-self: flex-end;
+  }
+}
+
+.addReview {
+  @extend .reviewComponent;
+  //border: #ccc solid;
+
+  &:before {
+    content: '+';
   }
 }
