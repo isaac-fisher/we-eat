@@ -2,9 +2,16 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-@import "font-awesome-sprockets";
-@import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Freckle+Face|Hammersmith+One');
+
+@font-face{
+  font-family: FontAwesome;
+  src: url('./font-awesome/fontawesome-webfont.eot');
+  src: url('./font-awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+  url('./font-awesome/fontawesome-webfont.woff') format('woff'),
+  url('./font-awesome/fontawesome-webfont.ttf') format('truetype'),
+  url('./font-awesome/fontawesome-webfont.svg#webfont') format('svg');
+}
 
 @font-face{
   font-family: 'MyWebFont';

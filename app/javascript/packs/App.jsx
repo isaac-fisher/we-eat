@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import PropTypes from 'prop-types'
-import $ from 'jquery'
 import RestaurantContainer from './components/restaurantContainer'
 import TopBar from './components/topBar'
 import Header from './components/Header'
