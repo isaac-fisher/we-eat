@@ -6,20 +6,20 @@
 
 @font-face{
   font-family: FontAwesome;
-  src: url('./font-awesome/fontawesome-webfont.eot');
-  src: url('./font-awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
-  url('./font-awesome/fontawesome-webfont.woff') format('woff'),
-  url('./font-awesome/fontawesome-webfont.ttf') format('truetype'),
-  url('./font-awesome/fontawesome-webfont.svg#webfont') format('svg');
+  src: asset_url('./font-awesome/fontawesome-webfont.eot');
+  src: asset_url('./font-awesome/fontawesome-webfont.eot?#iefix') format('embedded-opentype'),
+  asset_url('./font-awesome/fontawesome-webfont.woff') format('woff'),
+  asset_url('./font-awesome/fontawesome-webfont.ttf') format('truetype'),
+  asset_url('./font-awesome/fontawesome-webfont.svg#webfont') format('svg');
 }
 
 @font-face{
   font-family: 'MyWebFont';
-  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot');
-  src: url('./cuisine-webfont/efcuisines-regular-webfont.eot?#iefix') format('embedded-opentype'),
-  url('./cuisine-webfont/efcuisines-regular-webfont.woff') format('woff'),
-  url('./cuisine-webfont/efcuisines-regular-webfont.ttf') format('truetype'),
-  url('./cuisine-webfont/efcuisines-regular-webfont.svg#webfont') format('svg');
+  src: asset_url('./cuisine-webfont/efcuisines-regular-webfont.eot');
+  src: asset_url('./cuisine-webfont/efcuisines-regular-webfont.eot?#iefix') format('embedded-opentype'),
+  asset_url('./cuisine-webfont/efcuisines-regular-webfont.woff') format('woff'),
+  asset_url('./cuisine-webfont/efcuisines-regular-webfont.ttf') format('truetype'),
+  asset_url('./cuisine-webfont/efcuisines-regular-webfont.svg#webfont') format('svg');
 }
 
 body {
