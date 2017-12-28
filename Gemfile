@@ -46,8 +46,6 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
   gem 'rubocop', require: false
-  gem 'font-awesome-sass'
-
 
 end
 
